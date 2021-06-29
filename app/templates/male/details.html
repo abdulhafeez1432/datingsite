@@ -1,0 +1,433 @@
+{% extends 'dashboardbase.html' %}
+{% load static %}
+{% block title %} As Sallam Aleiykum {% endblock %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+{% block content %}
+
+{% include 'dashboardheader.html' %}
+
+
+                     <!-- About
+              ================================================= -->
+                <div class="about-profile">
+                    <div class="about-content-block">
+
+                        <h4 class="grey"><i class="ion-ios-information-outline icon-in-title"></i>Personal Information</h4>
+                        <h5> About Full Details About {{ female.username|upper }}</h5>
+                        
+                        <div class="line"></div>
+
+            {% if subscription %}
+                        
+                        {% if female.aboutme %}
+
+                            <p>{{ female.aboutme.about_me }}</p>
+                            <br>
+                            <h5> About my Partner</h5>
+                            <hr/>
+                            <p>{{ female.aboutme.about_partner }}</p>
+
+                        {% else %}
+
+                            <div class="block-title">
+                                <p>The Information is not available for now</p>
+                                
+                            </div>
+
+                            
+                        {% endif %}
+                            
+
+                           
+
+                    </div>
+
+                     
+                    <div class="about-content-block">
+                        <h4 class="grey"><i class="ion-ios-chatbubble-outline icon-in-title"></i>Profile Details</h4>
+
+                        
+                        {% if female.profile %}
+
+                          
+
+                            
+                            <div class="organization">
+                               
+                                <div class="work-info"> 
+                                <h5> Date of Birth </h5>
+                                <p>{{ female.profile.dob|timesince }}</p>
+                                </div>
+                            </div>
+                            <div class="organization">
+                               
+                                <div class="work-info">
+                                <h5>Tribe</h5>
+                                <p>{{ female.profile.tribe|title }}</p>
+                                </div>
+                            </div>
+                            <div class="organization">
+                               
+                                <div class="work-info">
+                                <h5>Language</h5>
+                                <p>{{ female.profile.language|title }} </p>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="organization">
+                               
+                                <div class="work-info"> 
+                                <h5> Place of Birth </h5>
+                                <p>{{ female.profile.place_of_birth|title }}</p>
+                                </div>
+                            </div>
+                            <div class="organization">
+                               
+                                <div class="work-info">
+                                <h5>Body Complex</h5>
+                                <p>{{ female.profile.body_complex|title }}</p>
+                                </div>
+                            </div>
+                            <div class="organization">
+                               
+                                <div class="work-info">
+                                <h5>Marital Status</h5>
+                                <p>{{ female.profile.marital|title }} </p>
+                                </div>
+                            </div>
+
+
+                            
+
+
+
+                            <div class="organization">
+                               
+                                <div class="work-info"> 
+                                <h5> Height Range </h5>
+                                <p>{{ female.profile.height|title }}</p>
+                                </div>
+                            </div>
+                            <div class="organization">
+                               
+                                <div class="work-info">
+                                <h5>Body Type</h5>
+                                <p>{{ female.profile.body|title }}</p>
+                                </div>
+                            </div>
+                            <div class="organization">
+                               
+                                <div class="work-info">
+                                <h5>Pysic & Challenge</h5>
+                                <p>{{ female.profile.physical|title }} - {{ user.profile.mention_challenges|title }} </p>
+                                </div>
+                            </div>
+
+
+
+                            <div class="organization">
+                               
+                                <div class="work-info">
+                                <h5>Blood Group</h5>
+                                <p>{{ female.profile.blood_group|title }}</p>
+                                </div>
+                            </div>
+                            <div class="organization">
+                               
+                                <div class="work-info">
+                                <h5>Blood Genotype</h5>
+                                <p>{{ female.profile.blood_genotype|title }} </p>
+                                </div>
+                            </div>
+
+
+
+
+                        {% else %}
+
+
+                            <div class="block-title">
+                                <p>The Information is not available for now</p>
+                                
+                            </div>
+
+                            
+                            
+                        {% endif %}
+                            
+                        
+                       
+                    </div>
+
+   
+
+                    <div class="about-content-block">
+                    <h4 class="grey"><i class="ion-ios-briefcase-outline icon-in-title"></i>Work Experiences & Education</h4>
+
+
+                    
+                    {% if female.education %}
+                        
+                                          
+
+                            <div class="organization">
+                               
+                                <div class="work-info"> 
+                                <h5> Job Post & Description </h5>
+                                <p>{{ female.education.job }} - <span class="text-grey">{{ user.education.job_description }}</span></p>
+                                </div>
+                            </div>
+                            <div class="organization">
+                               
+                                <div class="work-info">
+                                <h5>Highest Level of Education</h5>
+                                <p>{{ female.education.education }} - <span class="text-grey">{{ user.education.education_description }}</span></p>
+                                </div>
+                            </div>
+                            <div class="organization">
+                               
+                                <div class="work-info">
+                                <h5>Income Per Annual</h5>
+                                <p>₦ {{ female.education.income|intcomma }} </p>
+                                </div>
+                            </div>
+                    </div>  
+                    
+                    {% else %}
+                    
+                        <div class="block-title">
+                            
+                            <p>The Information is not available for now</p>
+                            
+                        </div>
+
+                    {% endif %}
+
+
+            {% else %}
+
+
+            <div class="about-content-block">
+                <h4 class="grey"><i class="ion-ios-chatbubble-outline icon-in-title"></i>Profile Details</h4>
+
+                
+                {% if female.profile %}
+
+                  
+
+                    <div class="organization">
+                               
+                        <div class="work-info"> 
+                        <h5> Date of Birth </h5>
+                        <p>{{ female.profile.dob|timesince }}</p>
+                        </div>
+                    </div>
+                    <div class="organization">
+                       
+                        <div class="work-info">
+                        <h5>Tribe</h5>
+                        <p>{{ female.profile.tribe|title }}</p>
+                        </div>
+                    </div>
+                    <div class="organization">
+                       
+                        <div class="work-info">
+                        <h5>Language</h5>
+                        <p>{{ female.profile.language|title }} </p>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="organization">
+                       
+                        <div class="work-info"> 
+                        <h5> Place of Birth </h5>
+                        <p>{{ female.profile.place_of_birth|title }}</p>
+                        </div>
+                    </div>
+                    <div class="organization">
+                       
+                        <div class="work-info">
+                        <h5>Body Complex</h5>
+                        <p>{{ female.profile.body_complex|title }}</p>
+                        </div>
+                    </div>
+                    <div class="organization">
+                       
+                        <div class="work-info">
+                        <h5>Marital Status</h5>
+                        <p>{{ female.profile.marital|title }} </p>
+                        </div>
+                    </div>
+
+
+                    
+
+
+
+                    <div class="organization">
+                       
+                        <div class="work-info"> 
+                        <h5> Height Range </h5>
+                        <p>{{ female.profile.height|title }}</p>
+                        </div>
+                    </div>
+                    <div class="organization">
+                       
+                        <div class="work-info">
+                        <h5>Body Type</h5>
+                        <p>{{ female.profile.body|title }}</p>
+                        </div>
+                    </div>
+                    <div class="organization">
+                       
+                        <div class="work-info">
+                        <h5>Pysic & Challenge</h5>
+                        <p>{{ female.profile.physical|title }} - {{ user.profile.mention_challenges|title }} </p>
+                        </div>
+                    </div>
+
+
+
+                    <div class="organization">
+                       
+                        <div class="work-info">
+                        <h5>Blood Group</h5>
+                        <p>{{ female.profile.blood_group|title }}</p>
+                        </div>
+                    </div>
+                    <div class="organization">
+                       
+                        <div class="work-info">
+                        <h5>Blood Genotype</h5>
+                        <p>{{ female.profile.blood_genotype|title }} </p>
+                        </div>
+                    </div>
+
+                {% else %}
+
+
+                    <div class="block-title">
+                        <p>The Information is not available for now</p>
+                        
+                    </div>
+
+                    
+                    
+                {% endif %}
+                    
+                
+               
+          
+
+
+
+                        <div class="about-content-block">
+                        <h4 class="grey"><i class="ion-ios-briefcase-outline icon-in-title"></i>Work Experiences & Education</h4>
+
+
+                        
+                        {% if female.education %}
+                            
+                                            
+
+                                <div class="organization">
+                                
+                                    <div class="work-info"> 
+                                    <h5> Job Post & Description </h5>
+                                    <p>{{ female.education.job }} - <span class="text-grey">{{ user.education.job_description }}</span></p>
+                                    </div>
+                                </div>
+                                <div class="organization">
+                                
+                                    <div class="work-info">
+                                    <h5>Highest Level of Education</h5>
+                                    <p>{{ female.education.education }} - <span class="text-grey">{{ user.education.education_description }}</span></p>
+                                    </div>
+                                </div>
+                                <div class="organization">
+                                
+                                    <div class="work-info">
+                                    <h5>Income Per Annual</h5>
+                                    <p>₦ {{ female.education.income|intcomma }} </p>
+                                    </div>
+                                </div>
+                        </div>  
+                        
+                        {% else %}
+                        
+                            <div class="block-title">
+                                
+                                <p>The Information is not available for now</p>
+                                
+                            </div>
+
+                        {% endif %}
+
+
+            {% endif %}
+                    
+                {% if subscription %}
+
+                    <a href="{% url 'showquestion' female.pk %}" ><button type="submit" class="btn btn-primary">Show Interest</button></a>
+
+                {% elif interest %}
+
+                    <a href="#" ><button type="submit" class="btn btn-primary" disabled>You Have Sunmited Proposal</button></a>
+
+
+                {% else %}
+
+                    <a href="{% url 'subscription' request.user.id %}" ><button type="submit" class="btn btn-primary">Subscrible To Show Interest</button></a>
+
+                   
+                 {% endif %}
+                   
+
+                  
+                      
+                   
+
+
+                   
+                </div>
+           
+           
+          </div>
+        </div>
+      </div>
+    </div>
+
+                <!-- Basic Information
+                ================================================= -->
+
+                    <!-- Friend List
+                ================================================= -->
+            
+                    
+
+                
+            
+            
+            
+            
+            
+            </div>
+
+              
+
+
+           
+           
+            </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock content %}

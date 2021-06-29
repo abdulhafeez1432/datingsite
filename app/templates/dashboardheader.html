@@ -1,0 +1,180 @@
+  {% load static %}
+  {% load humanize %}
+  <!-- Header
+    ================================================= -->
+    <header id="header">
+        <nav class="navbar navbar-default navbar-fixed-top menu">
+          <div class="container">
+  
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              {% if request.user.is_authenticated and request.user.is_male %}
+
+                <a class="navbar-brand" href="{% url 'male:dashboard' %}"><img src="{% static 'images/lawful_match_logo.fw.png' %}" alt="LawFul Match" /></a>
+
+              {% else %}
+
+                <a class="navbar-brand" href="{% url 'female:dashboard' %}"><img src="{% static 'images/lawful_match_logo.fw.png' %}" alt="logo" /></a>
+                
+              {% endif %}
+                
+              
+            </div>
+  
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right main-menu">
+
+                
+                {% if request.user.is_male %}
+                  <li class="dropdown"><a href="{% url 'male:dashboard' %}">Dashboard</a></li>
+                {% else %}
+                  <li class="dropdown"><a href="{% url 'female:dashboard' %}">Dashboard</a></li>
+                {% endif %}
+                  
+                
+                
+
+
+
+                <li class="dropdown"><a href="#">About Us</a></li>
+                <li class="dropdown"><a href="#">Contact Us</a></li>
+                
+               
+                <li class="dropdown"><a href="{% url 'logout' %}">Log Out</a></li>
+              </ul>
+              <form class="navbar-form navbar-right hidden-sm">
+                <div class="form-group">
+                  <i class="icon ion-android-search"></i>
+                  <input type="text" class="form-control" placeholder="Search friends, photos, videos">
+                </div>
+              </form>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container -->
+        </nav>
+      </header>
+      <!--Header End-->
+
+
+      
+    <div class="container">
+
+      <!-- Timeline
+      ================================================= -->
+      <div class="timeline">
+        <div class="timeline-cover">
+
+          <!--Timeline Menu for Large Screens-->
+          <div class="timeline-nav-bar hidden-sm hidden-xs">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="profile-info">
+
+                  
+                  {% if request.user.is_male  %}
+
+                      
+                      {% if request.user.profile.image %}
+
+                        
+                        <img src="{{ request.user.profile.image.url }}" alt="" class="img-responsive profile-photo" />
+
+
+                      
+                      {% else %}
+
+                          <img src="{% static 'images/male.fw.png' %}" alt="{{ request.user.username }}" class="img-responsive profile-photo" />
+
+
+
+                      {% endif %}
+                  
+                  {% else %}
+
+                    {% if request.user.profile.image %}
+
+                      <img src="{{ request.user.profile.image.url }}" alt="" class="img-responsive profile-photo" />
+
+
+                  
+                    {% else %}
+
+                      <img src="{% static 'images/female.fw.png' %}" alt="{{ request.user.username }}" class="img-responsive profile-photo" />
+
+
+
+                {% endif %}
+                      
+
+                 
+
+
+                                      
+                  {% endif %}
+                    
+
+                
+                  
+                  
+                  <h3>{{ request.user.username|title }}</h3>
+                  <p class="text-muted">Emal: {{ request.user.email|truncatechars:5 }}XXX</p>
+                </div>
+              </div>
+              <div class="col-md-9">
+                <ul class="list-inline profile-menu">
+                  
+                    <li><i class="icon ion-ios-settings"></i><a href="#">Setting</a></li>
+                    <li><a href="#" class="active">Change Password</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+                <ul class="follow-me list-inline">
+
+                
+           
+
+                {% if request.user.questions.count > 0  %}
+
+                        <li><a href="{% url 'all_question' %}"><button class="btn-primary">You Already Add   <span style="color: red;">({{ request.user.questions.count }})</span> Critical</button></a></li>
+
+                {% else %}
+
+                        <li><a href="{% url 'add_question' %}"><button class="btn-primary">Add Critical </button></a></li>  
+
+                {% endif %}
+
+            
+
+            
+                  
+           
+                  
+
+                  
+                     
+               
+
+
+
+                </ul>
+              </div>
+            </div>
+          </div><!--Timeline Menu for Large Screens End-->
+
+         
+        </div>
+        <div id="page-contents">
+          <div class="row">
+            <div class="col-md-4">
+              
+            {% include "sidemenu.html" %}
+            
+            </div>
+            <div class="col-md-8">
+  

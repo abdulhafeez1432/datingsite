@@ -1,0 +1,85 @@
+{% extends 'dashboardbase.html' %}
+{% load static %}
+{% block title %} As Sallam Aleiykum {% endblock %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+{% block content %}
+
+{% include 'dashboardheader.html' %}
+
+
+                     <!-- About
+              ================================================= -->
+                <div class="about-profile">
+                    
+                    
+                    <div class="about-content-block">
+
+                                    <!-- Nearby People List
+                            ================================================= -->
+                            <div class="people-nearby">
+
+                            {% for proposals in proposal %}
+
+                                <div class="nearby-user">
+                                <div class="row">
+                                    <div class="col-md-2 col-sm-2">
+                                    <img src="{{ proposals.interester.profile.image.url }}" alt="{{ proposals.interester.username }}" class="profile-photo-lg" />
+                                    
+                                </div>
+                                    <div class="col-md-7 col-sm-7">
+                                        <h5><a href="#" class="profile-link">{{ proposals.interester.get_full_name }}</a></h5>                                         
+                                        <p>{{ proposals.interester.aboutme.about_me|truncatewords:30 }}</p>
+                                        <p class="text-muted">Date of Birt: {{ proposals.interester.profile.dob|timesince }} - Height: {{ proposals.interester.profile.height }} </p>
+                                        
+                                    </div>
+                                    <div class="col-md-3 col-sm-3">
+
+                                        <a href="{% url 'female:male_proposal' proposals.interester.pk %}"><button class="btn btn-primary pull-right">View Proposal</button></a> <br> <br>
+                                    
+                                        <a href="{% url 'female:male_details' proposals.interester.pk %}"><button class="btn btn-primary pull-right">View Profile</button></a>
+                                    </div>
+                                </div>
+                                </div>
+                              
+                            {% endfor %}
+                                
+                                
+
+                            </div>
+                    
+                    </div>
+
+                     
+                </div>
+        </div>
+      </div>
+    </div>
+
+                <!-- Basic Information
+                ================================================= -->
+
+                    <!-- Friend List
+                ================================================= -->
+            
+                    
+
+                
+            
+            
+            
+            
+            
+            </div>
+
+              
+
+
+           
+           
+            </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock content %}

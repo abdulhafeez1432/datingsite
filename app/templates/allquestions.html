@@ -1,0 +1,74 @@
+{% extends 'dashboardbase.html' %}
+{% load static %}
+{% block title %} As Sallam Aleiykum {% endblock %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+{% block content %}
+
+{% include 'dashboardheader.html' %}
+
+
+                     <!-- About
+              ================================================= -->
+                <div class="about-profile">
+                    <div class="about-content-block">
+
+                        <h4 class="grey"><i class="ion-ios-information-outline icon-in-title"></i>All My Critical Questions</h4>
+                        <h5> I have Already Have  {{ questions|length }} Critical Question for The Proposal Person to Answer</h5>
+                        
+                        <div class="line"></div>
+
+
+                        <div class="organization">
+                               
+                          <div class="work-info"> 
+                          
+                            {% for q in questions %}
+                              
+                              <h5>  {{ forloop.counter }}.  	&nbsp;  {{ q.text }} | 
+                                  
+                                  <a href="{% url 'edit_question' q.id %}" style="color: green;"> Edit </a> | 
+                                  <a href="{% url 'delete_question' q.id %}"  style="color: red;" onclick="return confirm('Are you sure you want to delete this?')"> Delete </a>
+                                
+                              </h5>
+
+                            {% endfor %}
+
+                          </div>
+                      </div>
+
+           
+           
+           
+          </div>
+        </div>
+      </div>
+    </div>
+
+                <!-- Basic Information
+                ================================================= -->
+
+                    <!-- Friend List
+                ================================================= -->
+            
+                    
+
+                
+            
+            
+            
+            
+            
+            </div>
+
+              
+
+
+           
+           
+            </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock content %}

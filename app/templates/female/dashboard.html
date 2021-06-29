@@ -1,0 +1,85 @@
+{% extends 'dashboardbase.html' %}
+{% load static %}
+{% block title %} As Sallam Aleiykum {% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+{% include 'dashboardheader.html' %}
+
+
+
+              <!-- Basic Information
+              ================================================= -->
+
+                 <!-- Friend List
+            ================================================= -->
+
+            {% include "messages.html" %}
+
+            <div class="friend-list">
+            	<div class="row">
+              
+                {% if  request.user.profile and request.user.family and request.user.education and request.user.contact and request.user.aboutme and request.user.religion and request.user.character  %}
+              
+                
+                    {% for users in user  %}
+
+                    
+                    {% if users  %}
+
+
+                      {% if users.profile  %}
+
+
+                              <div class="col-md-6 col-sm-6">
+                                <div class="friend-card">
+                                  <img src="{% static 'images/lovely.jpg' %}" alt="{{ users.username }}" class="img-responsive cover" />
+                                  <div class="card-info">
+                                    <img src="{% static 'images/male.fw.png' %}" alt="{{ users.username }}" class="profile-photo-lg" />
+                                    <div class="friend-info">
+                                      <a href="#" class="pull-right text-green">Tribe: {{ users.profile.tribe|title  }}</a>
+                                      <h5><a href="{% url 'male:female_details' users.id %}" class="profile-link">Username: {{ users.username|title }}</a></h5>
+                                      <p>Age: {{ users.profile.dob|timesince }}</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                      {% endif %}
+                            
+                          {% endif %}
+                        
+                  
+                  {% endfor %}
+
+              {% else %}
+
+              <div class="block-title">
+                <h4 class="grey"><i class="icon ion-ios-locked-outline"></i>Notification</h4>
+                <div class="line"></div>
+<!--                 <p>Kindly Update Your necessary details <a href="{% url 'female:female_profile' %}">Personal Profile</a>. You can  <a href="#"> Subscrible </a></p>
+ -->
+                <p>Kindly Update Your necessary details for Menu Such as Personal Profile, About Me, Religion Information </a>. You can  <a href="#"> Subscrible </a></p>
+
+                <div class="line"></div>
+              </div>
+
+              {% endif %}
+
+             
+            
+            	</div>
+            </div>
+          </div>
+
+              
+
+
+            </div>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock content %}

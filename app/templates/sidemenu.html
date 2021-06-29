@@ -1,0 +1,223 @@
+ 
+ {% if request.user.is_male == True %}
+
+  <!--Edit Profile Menu-->
+  <ul class="edit-menu">
+    
+    <li class="active"><i class="icon ion-ios-information-outline"></i><a href="{% url 'male:dashboard' %}">Proposal</a></li>
+
+  {% if request.user.profile %}
+
+    <li><i class="icon ion-ios-information-outline"></i><a href="{% url 'male:edit_male_profile' request.user.profile.id %}">Edit Personal Profile</a></li>
+      
+  {% else %}
+
+    <li><i class="icon ion-ios-information-outline"></i><a href="{% url 'male:male_profile' %}">Personal Details</a></li>
+
+  {% endif %}
+
+
+
+{% if request.user.aboutme %}
+
+  <li><i class="icon ion-ios-settings"></i><a href="{% url 'male:edit_male_aboutme' request.user.aboutme.id %}">Edit About Me</a></li>
+
+{% else %}
+
+<li><i class="icon ion-ios-settings"></i><a href="{% url 'male:male_aboutme' %}">About Me</a></li>
+
+{% endif %}
+
+
+
+
+  {% if request.user.religion %}
+
+      <li><i class="icon ion-ios-settings"></i><a href="{% url 'male:edit_male_religion' request.user.religion.id %}">Edit Religion Information</a></li>
+ 
+  {% else %}
+   
+  <li><i class="icon ion-ios-settings"></i><a href="{% url 'male:male_religion' %}">Religion Information</a></li>
+
+  {% endif %}
+
+
+
+{% if request.user.character %}
+
+  <li><i class="icon ion-ios-settings"></i><a href="{% url 'male:edit_male_character' request.user.character.id %}">Edit Character Information</a></li>
+
+{% else %}
+
+<li><i class="icon ion-ios-heart-outline"></i><a href="{% url 'male:male_character' %}">Character Information</a></li>
+
+{% endif %}
+
+
+
+
+{% if request.user.family %}
+
+  <li><i class="icon ion-ios-settings"></i><a href="{% url 'male:edit_male_family' request.user.family.id %}">Edit Family Information</a></li>
+
+{% else %}
+
+  <li><i class="icon ion-ios-briefcase-outline"></i><a href="{% url 'male:male_family' %}">Family Information</a></li>
+
+{% endif %}
+
+
+{% if request.user.education %}
+
+  <li><i class="icon ion-ios-settings"></i><a href="{% url 'male:edit_male_education' request.user.education.id %}">Edit Education & Job Information</a></li>
+
+{% else %}
+
+  <li><i class="icon ion-ios-heart-outline"></i><a href="{% url 'male:male_education' %}">Education & Job Information</a></li>
+
+{% endif %}
+
+
+
+{% if request.user.contact %}
+
+  <li><i class="icon ion-ios-settings"></i><a href="{% url 'male:edit_male_contact' request.user.contact.id %}">Edit Resident Details</a></li>
+
+{% else %}
+
+  <li><i class="icon ion-ios-heart-outline"></i><a href="{% url 'male:male_contact' %}">Resident Information</a></li>
+
+{% endif %}
+
+
+
+
+{% if request.user.subscription.payment %}
+
+  <li><i class="icon ion-ios-settings"></i><a href="{% url 'subscriptiondetails' request.user.subscription.id %}">Subscription History</a></li>
+
+{% else %}
+
+  <li><i class="icon ion-ios-settings"></i><a href="{% url 'subscription' request.user.id %}">Subscrible</a></li>
+
+{% endif %}
+
+
+    
+    
+</ul>
+
+{% else %}
+
+
+ <!--Edit Profile Menu-->
+ <ul class="edit-menu">
+    
+  <li class="active"><i class="icon ion-ios-information-outline"></i><a href="{% url 'female:allproposal' %}">Proposal <span style="color: red;">({{ proposal_list|length }})</span></a></li>
+
+
+  
+  
+ 
+
+  {% if request.user.profile %}
+   
+      <li><i class="icon ion-ios-information-outline"></i><a href="{% url 'female:edit_female_profile' request.user.profile.id  %}">Edit Personal Details</a></li>
+
+  {% else %}
+
+      <li><i class="icon ion-ios-information-outline"></i><a href="{% url 'female:female_profile' %}">Personal Details</a></li>
+
+  {% endif %}
+
+  {% if request.user.aboutme %}
+
+    <li><i class="icon ion-ios-settings"></i><a href="{% url 'female:edit_female_aboutme' request.user.aboutme.id %}">Edit About Me</a></li>
+
+  {% else %}
+
+    <li><i class="icon ion-ios-settings"></i><a href="{% url 'female:female_aboutme' %}">About Me</a></li>
+
+  {% endif %}
+
+  {% if request.user.religion %}
+
+      <li><i class="icon ion-ios-settings"></i><a href="{% url 'female:edit_female_religion' request.user.religion.id %}">Edit Religion Information</a></li>
+ 
+  {% else %}
+   
+      <li><i class="icon ion-ios-settings"></i><a href="{% url 'female:female_religion' %}">Religion Information</a></li>
+
+  {% endif %}
+
+    
+  
+
+  
+{% if request.user.character %}
+
+  <li><i class="icon ion-ios-settings"></i><a href="{% url 'female:edit_female_character' request.user.character.id %}">Edit Character Information</a></li>
+
+{% else %}
+
+  <li><i class="icon ion-ios-settings"></i><a href="{% url 'female:female_character' %}">Character Information</a></li>
+
+{% endif %}
+
+
+
+{% if request.user.family %}
+
+  <li><i class="icon ion-ios-settings"></i><a href="{% url 'female:edit_female_family' request.user.family.id %}">Edit Family Information</a></li>
+
+{% else %}
+
+  <li><i class="icon ion-ios-settings"></i><a href="{% url 'female:female_family' %}">Family Information</a></li>
+
+{% endif %}
+
+
+
+{% if request.user.education %}
+
+  <li><i class="icon ion-ios-settings"></i><a href="{% url 'female:edit_female_education' request.user.education.id %}">Edit Education & Job Information</a></li>
+
+{% else %}
+
+  <li><i class="icon ion-ios-heart-outline"></i><a href="{% url 'female:female_education' %}">Education & Job Information</a></li>
+
+{% endif %}
+
+
+{% if request.user.contact %}
+
+  <li><i class="icon ion-ios-settings"></i><a href="{% url 'female:edit_female_contact' request.user.contact.id %}">Edit Resident Details</a></li>
+
+{% else %}
+
+  <li><i class="icon ion-ios-heart-outline"></i><a href="{% url 'female:female_contact' %}">Resident Information</a></li>
+
+{% endif %}
+
+
+
+
+{% if request.user.subscription %}
+
+  <li><i class="icon ion-ios-settings"></i><a href="{% url 'subscriptiondetails' request.user.subscription.id %}">Subscription History</a></li>
+
+{% else %}
+
+  <li><i class="icon ion-ios-settings"></i><a href="{% url 'subscription' %}">Subscrible</a></li>
+
+{% endif %}
+
+ 
+  
+
+  
+</ul>
+   
+ {% endif %}
+   
+ 

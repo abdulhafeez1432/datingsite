@@ -1,0 +1,45 @@
+{% extends 'dashboardbase.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% block title %} As Sallam Aleiykum {% endblock %}
+
+{% include 'dashboardheader.html' %}
+
+
+
+
+
+
+              <!-- Basic Information
+              ================================================= -->
+              <div class="edit-profile-container">
+                <div class="block-title">
+                  <h4 class="grey"><i class="icon ion-android-checkmark-circle"></i>Subscrible To MyZawaj To Send Proposal</h4>
+                  <div class="line"></div>
+                  <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate</p>
+                  <div class="line"></div>
+                </div>
+                
+                  <form name="basic-info" id="basic-info" enctype="multipart/form-data"  method="POST" novalidate>
+                      {% csrf_token %}
+                    <div class="row">
+
+                          {{ form|crispy }}
+                      
+
+                    </div>
+                    
+                   
+                    <button type="submit" class="btn btn-primary">Subscrible Now</button>
+                  </form>
+                
+              </div>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock content %}

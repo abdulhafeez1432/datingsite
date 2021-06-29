@@ -1,0 +1,142 @@
+{% extends 'dashboardbase.html' %}
+{% load static %}
+{% block title %} As Sallam Aleiykum {% endblock %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+{% block content %}
+
+{% include 'dashboardheader.html' %}
+
+
+                     <!-- About
+              ================================================= -->
+                <div class="about-profile">
+                    <div class="about-content-block">
+
+                        <h4 class="grey"><i class="ion-ios-information-outline icon-in-title"></i>My Criterial Result from {{ taker.username }}</h4>
+                       
+                        <div class="line"></div>
+                        
+                            {% if result %}
+                                
+                                {% for answers in result  %}
+
+                                    <h5>{{ forloop.counter }}.   {{ answers.question.text }} </h5>
+
+                                    <div class="block-title">
+                                        <p>{{ answers.answer }}</p>
+                                        
+                                    </div>
+
+                                {% endfor %}
+                                
+
+                                {% else %}
+
+                                    <div class="block-title">
+                                        <p>You Didn't Set Criterial for him</p>
+                                        
+                                    </div>
+
+                                {% endif %}
+                         
+                        </div>
+
+                     
+                    <div class="about-content-block">
+                        <h4 class="grey"><i class="ion-ios-chatbubble-outline icon-in-title"></i>Proposal Note</h4>
+
+                        
+                        {% if note.note %}
+
+                            <div class="block-title">
+                                
+                                <p>{{ note }}</p>
+                                
+                            </div>
+
+                           
+
+                        {% else %}
+
+
+                            <div class="block-title">
+                                <p>The Information is not available for now</p>
+                                
+                            </div>
+
+                            
+                            
+                        {% endif %}
+                            
+                        
+                       
+                    </div>
+
+
+                   
+                   {% if note.status == 'I' %}
+
+                        <a href="{% url 'female:accept_proposal' taker.pk %}"><button type="submit" name='accept' class="btn btn-primary">Accept Proposal</button></a>
+                   
+                        <a href="{% url 'female:reject_proposal' taker.pk %}"><button type="submit" name='eject' class="btn btn-danger">Eject Proposal</button></a>
+
+                    {% elif note.status == 'L' %}
+
+                        
+                        <a href="#"><button type="submit" name='accept' class="btn btn-primary" disabled>You Have Granted The Offer</button></a>
+                        <a href="{% url 'female:reject_proposal' taker.pk %}"><button type="submit" name='eject' class="btn btn-danger">Eject Proposal</button></a>
+
+                    {% elif note.status == 'R' %}
+
+                          
+                        <a href="{% url 'female:accept_proposal' taker.pk %}"><button type="submit" name='accept' class="btn btn-primary" disabled>Accept The Offer</button></a>
+                        <a href="#"><button type="submit" name='eject' class="btn btn-danger">You Have Rejected The Proposal</button></a>
+
+                    
+                    {% endif %}
+                       
+                        
+
+                    
+
+
+
+
+                
+                
+                </div>
+           
+           
+          </div>
+        </div>
+      </div>
+    </div>
+
+                <!-- Basic Information
+                ================================================= -->
+
+                    <!-- Friend List
+                ================================================= -->
+            
+                    
+
+                
+            
+            
+            
+            
+            
+            </div>
+
+              
+
+
+           
+           
+            </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock content %}

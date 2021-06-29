@@ -1,0 +1,181 @@
+{% extends 'dashboardbase.html' %}
+{% load static %}
+{% block title %} As Sallam Aleiykum {% endblock %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+{% block content %}
+
+{% include 'dashboardheader.html' %}
+
+
+                     <!-- About
+              ================================================= -->
+                <div class="about-profile">
+                    <div class="about-content-block">
+
+                        <h4 class="grey"><i class="ion-ios-information-outline icon-in-title"></i>Personal Information</h4>
+                        <h5> About Me</h5>
+                        <div class="line"></div>
+                        
+                        {% if user.aboutme %}
+
+                            <p>{{ user.aboutme.about_me }}</p>
+                            <br>
+                            <h5> About my Partner</h5>
+                            <hr/>
+                            <p>{{ user.aboutme.about_partner }}</p>
+
+                        {% else %}
+
+                            <div class="block-title">
+                                <p>The Information is not available for now</p>
+                                
+                            </div>
+
+                            
+                        {% endif %}
+                            
+
+                           
+
+                    </div>
+
+                     
+                    <div class="about-content-block">
+                        <h4 class="grey"><i class="ion-ios-chatbubble-outline icon-in-title"></i>Profile Details</h4>
+
+                        
+                        {% if user.profile %}
+
+                            <ul>
+                                <li>{{ user.profile.dob|timesince }}</li>
+                                <li>{{ user.profile.tribe|title }}</li>
+                                <li>{{ user.profile.language|title }}</li>
+                                <li>{{ user.profile.place_of_birth|title }}</li>
+                                <li>{{ user.profile.body_complex|title }}</li>
+                            
+                                <li>{{ user.profile.marital|title }}</li>
+                                <li>{{ user.profile.height|title }}</li>
+                                <li>{{ user.profile.body|title }}</li>
+                                <li>{{ user.profile.physical|title }} - {{ user.profile.mention_challenges|title }}</li>
+                                                    
+                                <li>{{ user.profile.blood_group|title }}</span></li>
+                                <li>{{ user.profile.blood_genotype|title }}</span></li>
+                            
+                            </ul>
+
+                        {% else %}
+
+
+                            <div class="block-title">
+                                <p>The Information is not available for now</p>
+                                
+                            </div>
+
+                            
+                            
+                        {% endif %}
+                            
+                        
+                       
+                    </div>
+
+   
+
+                    <div class="about-content-block">
+                    <h4 class="grey"><i class="ion-ios-briefcase-outline icon-in-title"></i>Work Experiences & Education</h4>
+
+
+                    
+                    {% if user.education %}
+                        
+                                          
+
+                            <div class="organization">
+                                <img src="{% static 'images/envato.png' %}" alt="" class="pull-left img-org" />
+                                <div class="work-info"> 
+                                <h5> Job </h5>
+                                <p>{{ user.education.job }} - <span class="text-grey">{{ user.education.job_description }}</span></p>
+                                </div>
+                            </div>
+                            <div class="organization">
+                                <img src="{% static 'images/envato.png' %}" alt="" class="pull-left img-org" />
+                                <div class="work-info">
+                                <h5>Education</h5>
+                                <p>{{ user.education.education }} - <span class="text-grey">{{ user.education.education_description }}</span></p>
+                                </div>
+                            </div>
+                            <div class="organization">
+                                <img src="{% static 'images/envato.png' %}" alt="" class="pull-left img-org" />
+                                <div class="work-info">
+                                <h5>Income</h5>
+                                <p>₦ {{ user.education.income|intcomma }} </p>
+                                </div>
+                            </div>
+                    </div>  
+                    
+                    {% else %}
+                    
+                        <div class="block-title">
+                            
+                            <p>The Information is not available for now</p>
+                            
+                        </div>
+
+                    {% endif %}
+                    
+                 
+                 {% if interest %}
+
+                 <a href="{% url 'male:female_question' user.pk %}" ><button type="submit" class="btn btn-primary" disabled>You Have Sunmited Proposal</button></a>
+
+
+                {% else %}
+
+                  <a href="{% url 'male:female_question' user.pk %}" ><button type="submit" class="btn btn-primary">Show Interest</button></a>
+
+                   
+                 {% endif %}
+                   
+
+                  
+                      
+                   
+
+
+                   
+                </div>
+           
+           
+          </div>
+        </div>
+      </div>
+    </div>
+
+                <!-- Basic Information
+                ================================================= -->
+
+                    <!-- Friend List
+                ================================================= -->
+            
+                    
+
+                
+            
+            
+            
+            
+            
+            </div>
+
+              
+
+
+           
+           
+            </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock content %}
